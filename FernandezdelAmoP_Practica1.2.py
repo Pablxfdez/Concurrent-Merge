@@ -13,7 +13,7 @@ from random import randint, random
 N = 10 # number of integers produced by each producer
 NProducers = 5 # Number of producers
 
-Buffer_size = 2 # size of the buffer of each producer, difference with part 1
+Buffer_size = 4 # size of the buffer of each producer, difference with part 1
 
 
 def delay(factor = 3):
