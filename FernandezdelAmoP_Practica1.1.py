@@ -19,23 +19,23 @@ def delay(factor = 3):
 
 
 
-def producer(storage, empty, non_empty, prod_number):
+def producer(personal_storage, personal_empty, personal_non_empty):
     data = 0
     for _ in range(N): 
         data = randint(data + 1, data + 40) 
         print(f"Producer {current_process().name} has produced the number: {data}")
 
        
-        storage[prod_number].value = data
+        personal_storage.value = data
         print(f"Producer {current_process().name} has stored the number: {data}")
-        empty[prod_number].release()
-        non_empty[prod_number].acquire() # the producer acquires the lock to write to the buffer
+        personal_empty.release()
+        personal_non_empty.acquire() # the producer acquires the lock to write to the buffer
         delay()
 
     try:
-        storage[prod_number].value = -1 # write -1 to indicate that the producer has finished
+        personal_storage.value = -1 # write -1 to indicate that the producer has finished
     finally:
-        empty[prod_number].release() # release the semaphore to signal to the collector that there is data in the buffer
+        personal_empty.release() # release the semaphore to signal to the collector that there is data in the buffer
         print(f"The producer {current_process().name} has finished producing") # print message to indicate that the producer has finished producing
 
 
@@ -102,7 +102,7 @@ def main():
     # Create NProd producer processes and append them to processes list
     for prod_number in range(NProducers):
         processes.append(Process(target=producer, name=f"Prod_{prod_number}",
-                                  args=[storage, empty, non_empty, prod_number]))
+                                  args=[storage[prod_number], empty[prod_number], non_empty[prod_number]]))
         
     # Create a consumer process and append it to processes list
     processes.append(Process(target=merge, name="Collector",
