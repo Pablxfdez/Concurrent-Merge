@@ -17,6 +17,8 @@ This is implemented in FernandezdelAmoP_Practica1.1.py
 
 OPTIONAL: a fixed-size buffer can be implemented so that producers put values in the buffer. This is done in FernandezdelAmoP_Practica1.2.py
 
+The Semaphores and Locks are using the opposite names giren by Luis Llana in his schema, but the procedure is the same.
+
 Español: 
 
 Módulo Multiprocessing para ejecutar Programa Consumidor - Productor
@@ -32,3 +34,5 @@ Se deben crear listas de semáforos. Cada productor solo maneja sus propios sem�
 Esto está implementado en FernandezdelAmoP_Practica1.1.py
 
 OPCIONAL: se puede implementar un búfer de tamaño fijo para que los productores pongan valores en el búfer. Esto se hace en FernandezdelAmoP_Practica1.2.py
+
+Los nombres de las listas de semáforos tienen los nombres intercambiados (empty por non_empty y viceversa). Aún así funciona exactamente igual que el esquema aportado por el profesor Luis Llana.
